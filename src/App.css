@@ -1,38 +1,137 @@
 .App {
+  height: 100vh;
+  width: 100vw;
+}
+
+#selectInput-container {
+  border: 1px solid rgba(65, 63, 63, 0.61);
+  border-radius: 9px;
+  margin: 10px;
+  position: relative;
+  justify-content: center;
+  width: 230px;
+}
+
+#bubble {
+  width: 19px;
+  height: 19px;
+  position: absolute;
+  border-radius: 50%;
+  top: -7px;
+  right: -7px;
+  background: rgb(219, 79, 107);
+  color: white;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#selectInput-container button:focus {
+  outline: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#options-container {
+  background: rgb(255, 253, 253);
+  border: 1px solid rgba(65, 63, 63, 0.61);
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  overflow: scroll;
+  border-radius: 9px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.selector {
+  font-size: .9em;
+  color: rgb(0, 0, 0);
+  height: 42px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(70, 70, 70, 0.13);
+  background: rgb(255, 253, 253);
+  text-align: left;
+  padding-left: 1em;
+}
+
+#search-container {
+  position: sticky;
+  top: 0;
+}
+
+#input-text-search {
+  width: calc(100% - 1.4em);
+  padding: 0 .7em;
+  height: 30px;
+  color: rgba(68, 68, 68, 0.753);
+  background: rgb(255, 255, 255);
+}
+
+/* #input-text-search::placeholder {
+  color: rgba(68, 68, 68, 0.753);
+} */
+
+#input-text-search:hover {
+  background: white;
+}
+
+.selector:hover:not(.selected) {
+  background: rgba(119, 136, 153, 0.226);
+}
+
+.selected {
   color: white;
+  /* font-weight: 500; */
+  background: rgb(69, 173, 207);
 }
 
-.App-link {
-  color: #61dafb;
+.open {
+  height: auto;
+  /* max-height: 200px; */
+  /* opacity: 1; */
+  animation: openDropdown .6s ease-out forwards;
 }
 
-@keyframes App-logo-spin {
+.close {
+  animation: closeDropdown .6s forwards
+}
+
+#dropdown {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+}
+
+#dropdown span {
+  padding-left: 1em;
+  grid-column: 1/4;
+}
+
+.cross-down {
+  grid-column: 5;
+  justify-self: center;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  background: black;
+  width: 13px;
+  height: 7px;
+  transition: all .25s ease-out;
+}
+
+@keyframes closeDropdown {
   from {
-    transform: rotate(0deg);
+    max-height: 200px;
+    opacity: 1;
   }
   to {
-    transform: rotate(360deg);
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes openDropdown {
+  0% {
+    max-height: 0px;
+    opacity: 0;
+  }
+  100% {
+    max-height: 200px;
+    opacity: 1;
   }
 }
